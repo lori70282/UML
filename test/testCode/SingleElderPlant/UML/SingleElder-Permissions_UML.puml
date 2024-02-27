@@ -1,0 +1,44 @@
+@startuml
+
+skinparam BackgroundColor #ffffee
+scale 600 width
+
+skinparam actor {
+  BackgroundColor<<Admin>> LightBlue
+  BackgroundColor<<COUNTRY_MANAGER>> Yellow
+  BackgroundColor<<SINGLE_ELDER_COUNTY_SUPERVISOR>> DarkBlue
+  BackgroundColor<<SINGLE_ELDER_NOTIFIER>> Purple
+}
+
+skinparam usecase {
+  ArrowColor<<External>> DarkGreen
+}
+
+left to right direction
+
+actor 系統管理者<<Admin>>
+actor 縣府管理者<<COUNTRY_MANAGER>>
+actor 獨居老人訪視縣府承辦<<SINGLE_ELDER_COUNTY_MANAGER>>
+actor 獨居老人訪視通報人員<<SINGLE_ELDER_NOTIFIER>>
+
+rectangle 通報登錄作業權限 {
+
+  usecase DELETE as "刪除"
+  usecase QUERY as "查詢"
+  usecase INSERT as "新增"
+  usecase UPDATE as "修改"
+  usecase RETRIEVE as "抽回"
+
+  INSERT <-- 獨居老人訪視縣府承辦
+  QUERY <-- 獨居老人訪視縣府承辦
+  DELETE <-- 獨居老人訪視縣府承辦
+  INSERT <-UP- 獨居老人訪視通報人員
+  UPDATE <-UP- 獨居老人訪視通報人員
+  RETRIEVE <-UP- 獨居老人訪視通報人員
+
+  縣府管理者 <-- 系統管理者
+  獨居老人訪視縣府承辦 <-- 縣府管理者
+
+}
+
+@enduml

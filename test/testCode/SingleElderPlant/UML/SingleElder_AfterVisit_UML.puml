@@ -1,0 +1,58 @@
+@startuml
+
+skinparam BackgroundColor #ffffee
+scale 600 width
+
+skinparam actor {
+  BackgroundColor<<Admin>> LightBlue
+  BackgroundColor<<COUNTRY_MANAGER>> Yellow
+  BackgroundColor<<SINGLE_ELDER_COUNTY_SUPERVISOR>> DarkBlue
+  BackgroundColor<<SINGLE_ELDER_NOTIFIER>> Purple
+}
+
+skinparam usecase {
+  ArrowColor<<External>> DarkGreen
+}
+
+left to right direction
+
+actor 系統管理者<<Admin>>
+actor 縣府管理者<<COUNTRY_MANAGER>>
+actor 獨居老人訪視縣府承辦<<SINGLE_ELDER_COUNTY_MANAGER>>
+actor 獨居老人訪視縣府督導<<SINGLE_ELDER_COUNTY_SUPERVISOR>>
+actor 獨居老人委外單位主管<<SINGLE_ELDER_UNIT_MANAGER>>
+
+rectangle 續訪審核作業(含批次) {
+
+
+  usecase CHECKING as "委外主管初訪審核
+  FirstElderVisit.appStatus -> SysConfig = (no_)RECHECKING"
+  usecase UNIT_REJECT as "委外主管初訪退件
+  FirstElderVisit.appStatus -> SysConfig = (no_)UNIT_REJECT"
+  usecase QUERY as "查詢"
+  usecase UPDATE as "修改"
+  usecase RECHECKING as "縣府承辦初訪審核
+  FirstElderVisit.appStatus -> SysConfig = (no_)DONE"
+  usecase COUNTY_REJECT as "縣府承辦初訪退件
+  FirstElderVisit.appStatus -> SysConfig = (no_)COUNTY_REJECT"
+  usecase DONE as "縣府承辦初訪收案
+  FirstElderVisit.appStatus -> SysConfig = (no_)COUNTY_SUPERVISOR_REJECT"
+
+  QUERY <-UP- 獨居老人委外單位主管
+  UPDATE <-UP- 獨居老人委外單位主管
+  CHECKING <-UP- 獨居老人委外單位主管
+  UNIT_REJECT <-UP- 獨居老人委外單位主管
+  QUERY <-- 獨居老人訪視縣府承辦
+  UPDATE <-- 獨居老人訪視縣府承辦
+  RECHECKING <-- 獨居老人訪視縣府承辦
+  COUNTY_REJECT <-- 獨居老人訪視縣府承辦
+  DONE <-- 獨居老人訪視縣府承辦
+
+  縣府管理者 <-- 系統管理者
+  獨居老人訪視縣府承辦 <-- 獨居老人訪視縣府督導
+  獨居老人訪視縣府承辦 <-- 縣府管理者
+
+
+}
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+start
+:獨居老人通報人填寫通報表(status=1);
+repeat
+if (獨居老人管理ID已存在) then (Yes)
+  if (ID的案件狀態!=結案) then (Yes)
+  :將【通報判斷】欄位選項定義為【重覆通報】;
+  else (N o)
+  :將【通報判斷】欄位選項定義為【案件重新轉入】;
+  endif
+else (N o)
+  :將【通報判斷】欄位選項定義為【新案件待審核】;  
+endif
+  :發送(email&簡訊)通知具有所有獨居老人縣府承辦角色帳號(status=2);
+  :將案件與獨居老人管理中案件進行關聯(後續顯示資料用途);
+split
+if (抽回案件) then (Yes)
+    :該通報帳號觸發抽回功能，狀態改為【通報案件抽回(status=3)】;
+    :發送(email&簡訊)給該帳號，通知案件抽回;
+    :重新送出通報表(status=1);
+else (N o)
+  :通報結束;
+end
+
+note right
+  1 通報建檔(status=1)
+  2 通報中(status=2)
+  3 案件抽回(status=3)
+  4 通報審核(status=4)
+  5 通報通過(status=5)
+  6 重覆通報(status=6)
+  7 舊案轉入(status=7)
+end note
+
+@enduml

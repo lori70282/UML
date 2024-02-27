@@ -1,0 +1,28 @@
+@startuml
+
+start
+:獨居老人通報審核(status=4);
+    if (status=4) then (Yes)
+        if (【通報判斷】欄位 != 新案件待審核) then (Yes)
+        :呈現按鈕名稱【歸檔並留存】(status=6);
+        else 
+        :呈現按鈕名稱【通報建檔】;
+        :案件寫入獨居老人管理;
+        :觸發產生初訪表紀錄(status=5);
+        endif
+    else
+        :呈現通報失敗(status=6);
+    endif
+    :通報審核結束;
+end
+
+note right
+  1 通報建檔(status=1)
+  2 通報中(status=2)
+  3 案件抽回(status=3)
+  4 通報審核(status=4)
+  5 通報通過(status=5)
+  6 通報結案(status=6)
+end note
+
+@enduml

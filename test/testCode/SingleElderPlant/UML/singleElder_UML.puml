@@ -1,0 +1,67 @@
+@startuml
+
+skinparam BackgroundColor #ffffee
+scale 600 width
+
+skinparam actor {
+  BackgroundColor<<SINGLE_ELDER_TOWN_OFFICER>> LightBlue
+  BackgroundColor<<SINGLE_ELDER_WORKER>> DarkBlue
+  BackgroundColor<<SINGLE_ELDER_UNIT_MANAGER>> Purple
+  BackgroundColor<<SINGLE_ELDER_COUNTY_MANAGER>> Pink
+  BackgroundColor<<SINGLE_ELDER_CAREPERSON>> Red
+  BackgroundColor<<SINGLE_ELDER_NOTIFIER>> green
+}
+
+' skinparam usecase {
+'   ArrowColor<<External>> DarkGreen
+' }
+
+left to right direction
+
+actor "獨居老人公所承辦" <<SINGLE_ELDER_TOWN_OFFICER>>
+actor "獨居老人社工" <<SINGLE_ELDER_WORKER>>
+actor "獨居老人委外單位主管" <<SINGLE_ELDER_UNIT_MANAGER>>
+actor "獨居老人縣府承辦" <<SINGLE_ELDER_COUNTY_MANAGER>>
+actor "獨居老人關懷據點人員" <<SINGLE_ELDER_CAREPERSON>>
+actor "獨居老人通報人員" <<SINGLE_ELDER_NOTIFIER>>
+
+rectangle 獨居老人訪視管理 {
+
+  usecase 通報申請作業 as "通報申請作業"
+  usecase 續訪登錄作業 as "續訪登錄作業"
+  usecase 通報審核作業 as "通報審核作業"
+  usecase 獨居老人單位管理 as "獨居老人單位管理"
+  usecase 續訪批次審核作業 as "續訪批次審核作業"
+  usecase 初訪批次審核作業 as "初訪批次審核作業"
+  usecase 關懷據點村里及人員設定作業 as "關懷據點村里及人員設定作業"
+  usecase 獨居老人帳號管理 as "獨居老人帳號管理"
+  usecase 獨居老人管理 as "獨居老人管理"
+
+
+
+
+'   usecase 系統流程調整 as "test6"
+'   usecase 歷程記錄 as "test7"
+'   usecase 電子郵件通知調整 as "test8"
+
+    通報申請作業 <|-up- 獨居老人通報人員    
+    通報申請作業 <|-up- 獨居老人公所承辦      
+    獨居老人管理 <|-up- 獨居老人公所承辦    
+    初訪批次審核作業 <|-up- 獨居老人縣府承辦
+    續訪批次審核作業 <|-up- 獨居老人縣府承辦
+    關懷據點村里及人員設定作業 <|-up- 獨居老人縣府承辦
+    獨居老人帳號管理 <|-up- 獨居老人縣府承辦
+    通報審核作業 <|-up- 獨居老人縣府承辦
+    獨居老人公所承辦 <|-up- 獨居老人縣府承辦
+    獨居老人單位管理 <|-up- 獨居老人縣府承辦    
+    獨居老人管理 <|-- 獨居老人關懷據點人員
+    續訪登錄作業 <|-- 獨居老人關懷據點人員
+    通報申請作業 <|-- 獨居老人社工
+    獨居老人管理 <|-- 獨居老人社工
+    獨居老人社工 <|-- 獨居老人委外單位主管
+    初訪批次審核作業 <|-- 獨居老人委外單位主管
+    續訪批次審核作業 <|-- 獨居老人委外單位主管
+    獨居老人單位管理 <|-- 獨居老人委外單位主管
+}
+
+@enduml
