@@ -1,0 +1,48 @@
+@startuml
+
+skinparam BackgroundColor #ffffee
+scale 600 width
+
+skinparam actor {
+  BackgroundColor<<Admin>> LightBlue
+  BackgroundColor<<SINGLE_ELDER_WORKER>> green
+  BackgroundColor<<SINGLE_ELDER_CAREPERSON>> pink
+}
+
+skinparam usecase {
+  ArrowColor<<External>> DarkGreen
+}
+
+left to right direction
+
+actor 系統管理者<<Admin>>
+actor 獨居老人關懷據點人員<<SINGLE_ELDER_CAREPERSON>>
+actor 獨居老人社工<<SINGLE_ELDER_WORKER>>
+
+rectangle 續訪登錄作業 {
+
+
+  usecase CHECKING as "檢視(需判斷單位)"
+  usecase QUERY as "查詢(需判斷單位)"
+  usecase UPDATE as "修改"
+  usecase ADDLIST as "新增續訪清單"
+  usecase UPDATELIST as "修改續訪清單"
+
+  QUERY <-UP- 獨居老人社工
+  UPDATE <-UP- 獨居老人社工
+  CHECKING <-UP- 獨居老人社工
+  ADDLIST <-UP- 獨居老人社工
+  UPDATELIST <-UP- 獨居老人社工
+  
+  QUERY <-- 獨居老人關懷據點人員
+  UPDATE <-- 獨居老人關懷據點人員
+  CHECKING <-- 獨居老人關懷據點人員
+  ADDLIST <-- 獨居老人關懷據點人員
+  UPDATELIST <-- 獨居老人關懷據點人員
+
+  獨居老人關懷據點人員 <-- 系統管理者
+
+
+}
+
+@enduml

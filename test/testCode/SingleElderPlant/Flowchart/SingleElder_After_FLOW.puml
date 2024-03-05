@@ -1,0 +1,31 @@
+@startuml
+
+start
+    :獨居老人-續訪登錄紀錄;
+    :判斷是否為【獨居老人關懷據點人員(SINGLE_ELDER_CAREPERSON)】;
+    :判斷是否為【獨居老人社工(SINGLE_ELDER_WORKER)】;
+if (true) then (yes)
+    :獨居老人關懷據點人員=1;
+    :獨居老人社工=2;
+    if(role=1) then (yes)        
+        :依據【訪視單位】欄位;
+        :顯示該單位案件;
+        :可【修改】案件資料;
+        :可【新增續訪清單】資料;
+        :可【修改續訪清單】資料;
+    elseif(role=2) then (yes)
+        :依據【關懷據點】欄位;
+        :顯示該單位案件;
+        :可【修改】案件資料;
+        :可【新增續訪清單】資料;
+        :可【修改續訪清單】資料;
+    else(role != 1 || role != 2) then (yes)
+        :隱藏;
+    endif    
+        :資料建立後不可刪除;
+else (no)
+  :隱藏功能;
+endif
+stop
+
+@enduml

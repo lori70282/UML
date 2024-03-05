@@ -25,28 +25,32 @@ actor 獨居老人委外單位主管<<SINGLE_ELDER_UNIT_MANAGER>>
 rectangle 續訪審核作業(含批次) {
 
 
-  usecase CHECKING as "委外主管初訪審核
-  FirstElderVisit.appStatus -> SysConfig = (no_)RECHECKING"
-  usecase UNIT_REJECT as "委外主管初訪退件
-  FirstElderVisit.appStatus -> SysConfig = (no_)UNIT_REJECT"
+  usecase VISIT as "委外主管續訪審核
+  AfterElderVisit.appStatus -> SysConfig = (no_)VISIT"
+  usecase UNIT_REJECT as "委外主管續訪退件
+  AfterElderVisit.appStatus -> SysConfig = (no_)UNIT_REJECT"
   usecase QUERY as "查詢"
   usecase UPDATE as "修改"
-  usecase RECHECKING as "縣府承辦初訪審核
-  FirstElderVisit.appStatus -> SysConfig = (no_)DONE"
-  usecase COUNTY_REJECT as "縣府承辦初訪退件
-  FirstElderVisit.appStatus -> SysConfig = (no_)COUNTY_REJECT"
-  usecase DONE as "縣府承辦初訪收案
-  FirstElderVisit.appStatus -> SysConfig = (no_)COUNTY_SUPERVISOR_REJECT"
+  usecase REVIEW as "縣府承辦續訪審核
+  AfterElderVisit.appStatus -> SysConfig = (no_)REVIEW"
+  usecase COUNTY_REJECT as "縣府承辦續訪退件
+  AfterElderVisit.appStatus -> SysConfig = (no_)COUNTY_REJECT"
+  usecase CONTINUE_VISIT as "持續訪視
+  AfterElderVisit.appStatus -> SysConfig = (no_)CONTINUE_VISIT"
+  usecase END as "結案
+  AfterElderVisit.appStatus -> SysConfig = (no_)END"
 
   QUERY <-UP- 獨居老人委外單位主管
   UPDATE <-UP- 獨居老人委外單位主管
-  CHECKING <-UP- 獨居老人委外單位主管
+  VISIT <-UP- 獨居老人委外單位主管
   UNIT_REJECT <-UP- 獨居老人委外單位主管
+  
   QUERY <-- 獨居老人訪視縣府承辦
   UPDATE <-- 獨居老人訪視縣府承辦
-  RECHECKING <-- 獨居老人訪視縣府承辦
+  REVIEW <-- 獨居老人訪視縣府承辦
   COUNTY_REJECT <-- 獨居老人訪視縣府承辦
-  DONE <-- 獨居老人訪視縣府承辦
+  CONTINUE_VISIT <-- 獨居老人訪視縣府承辦
+  END <-- 獨居老人訪視縣府承辦
 
   縣府管理者 <-- 系統管理者
   獨居老人訪視縣府承辦 <-- 獨居老人訪視縣府督導
