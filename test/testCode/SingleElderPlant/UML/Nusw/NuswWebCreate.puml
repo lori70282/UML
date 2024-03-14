@@ -1,0 +1,139 @@
+@startuml
+
+skinparam BackgroundColor #ffffee
+
+skinparam linetype ortho
+
+skinparam actor {
+  BackgroundColor<<SINGLE_ELDER_TOWN_OFFICER>> LightBlue
+}
+
+scale 600 width
+
+skinparam usecase {
+  ArrowColor<<superUser>> DarkGreen
+  ArrowColor<<systemUser>> bule
+}
+
+left to right direction
+
+rectangle 前台 {
+
+
+  usecase FNa1.0 as "首頁_頁首選單_首頁"
+  usecase FNa1.1 as "首頁_頁首選單_聯絡我們"
+  usecase FNa1.2 as "首頁_頁首選單_fB粉絲團"
+  usecase FNa1.3 as "首頁_頁首選單_申請代刊"
+  usecase FNa1.4 as "首頁_導覽列_關於全聯會"
+  usecase FNa1.5 as "首頁_導覽列_最新消息"
+  usecase FNa1.6 as "首頁_導覽列_社工法規"
+  usecase FNa1.7 as "首頁_導覽列_研究和出版"
+  usecase FNa1.8 as "首頁_導覽列_求才布告斕"
+  usecase FNa1.9 as "首頁_導覽列_人才資料庫"
+  usecase FNa1.10 as "首頁_頁面區塊_最新消息"
+  usecase FNa1.11 as "首頁_頁面區塊_FB粉絲團"
+  usecase FNa1.12 as "首頁_頁面區塊_友站連結"
+  usecase FNa2.0 as "關於全聯會_全聯會簡介 "
+  usecase FNa2.1 as "關於全聯會_全聯會章程 "
+  usecase FNa2.2 as "關於全聯會_組織架構 "
+  usecase FNa2.3 as "關於全聯會_里監事名單 "
+  usecase FNa2.4 as "關於全聯會_委負會名單"
+  usecase FNa3.0 as "最新消息_全聯會公告"
+  usecase FNa3.1 as "最新消息_活動訊息_代刊系統"
+  usecase FNa4.0 as "社工法規_社工師法"
+  usecase FNa4.1 as "社工法規_社工倫理守則"
+  usecase FNa4.2 as "社工法規_倫理審議原則"
+  usecase FNa5.0 as "研究和出版_學刊"
+  usecase FNa5.1 as "研究和出版_倫理案例彙編"
+  usecase FNa5.2 as "研究和出版_其他"
+  usecase FNa6.0 as "求才公告欄_代刊系統"
+  usecase FNa7.0 as "常見問題_常見問題"
+  usecase FNa8.0 as "基礎模組"
+    
+}
+
+rectangle 後台 {
+
+  usecase FNb1.0 as "基本模組_首頁"
+  usecase FNb1.1 as "基本模組_帳號管理"
+  usecase FNb1.2 as "基本模組_公告管理"
+  usecase FNb1.3 as "基本模組_單位管理"
+  usecase FNb1.4 as "基本模組_角色管理_選單對應"
+  usecase FNb1.5 as "基本模組_系統操作管理_登入登出紀錄"
+  usecase FNb1.6 as "基本模組_系統操作管理_選單操作紀錄"
+  usecase FNb1.7 as "基本模組_電子郵件管理_連線介接紀錄"
+  usecase FNb1.8 as "基本模組_個人資料修改"
+  usecase FNb1.9 as "基本模組_系統設定_縣市代碼設定管理"
+  usecase FNb1.10 as "基本模組_系統設定_參數設定管理"
+  usecase FNb1.11 as "基本模組_系統設定_密碼規則管理"  
+  usecase FNa1.12 as "基本模組_系統設定_footer聯絡資訊"
+  usecase FNb2.0 as "頁首選單作業_聯絡我們"
+  usecase FNb2.1 as "頁首選單作業_社群管理"
+  usecase FNb2.2 as "頁首選單作業_友站資訊連結"
+  usecase FNb3.0 as "代刊申請審核作業_社群管理"
+  usecase FNb4.0 as "關於全聯會作業_全聯會簡介"
+  usecase FNb4.1 as "關於全聯會作業_全聯會章程 "
+  usecase FNb4.2 as "關於全聯會作業_組織架構 "
+  usecase FNb4.3 as "關於全聯會作業_里監事名單 "
+  usecase FNb4.4 as "關於全聯會作業_委員會名單"
+  usecase FNb5.0 as "最新消息作業_全聯會公告"
+  usecase FNb5.1 as "最新消息作業_活動訊息_代刊系統"
+  usecase FNb6.0 as "社工法規作業_法規類型管理"
+  usecase FNb6.1 as "社工法規作業_法規資料建立"
+  usecase FNb7.0 as "研究和出版_學刊書籍作業_學刊類型管理"
+  usecase FNb7.1 as "研究和出版_學刊書籍作業_學刊資料建立"
+  usecase FNb8.0 as "常見問題作業_常見問題"
+  usecase FNb9.0 as "人才資料庫_匯入乙式報表"
+  usecase FNb9.1 as "人才資料庫_人才資料管理"
+
+}
+
+    FNa1.0  --> FNb1.0
+    FNa1.1  --> FNb2.0
+    FNa1.2  --> FNb2.1
+    FNa1.3  --> FNb3.0
+    FNa1.4  --> FNb4.0
+    FNa1.5  --> FNb5.0
+    FNa1.6  --> FNb6.1
+    FNa1.7  --> FNb7.1
+    FNa1.8  --> FNb3.0
+    FNa1.9  --> FNb9.0
+    FNa1.9  --> FNb9.1
+    FNa1.10 --> FNb5.0
+    FNa1.10 --> FNb5.1
+    FNa1.11 --> FNb2.1
+    FNa1.12 --> FNb2.2
+    FNa2.0  --> FNb4.0
+    FNa2.1  --> FNb4.1
+    FNa2.2  --> FNb4.2
+    FNa2.3  --> FNb4.3
+    FNa2.4  --> FNb4.4
+    FNa3.0  --> FNb5.0
+    FNa3.1  --> FNb5.1
+    FNa4.0  --> FNb6.0
+    FNa4.0  --> FNb6.1
+    FNa4.1  --> FNb6.0
+    FNa4.1  --> FNb6.1
+    FNa4.2  --> FNb6.0
+    FNa4.2  --> FNb6.1
+    FNa5.0  --> FNb7.0
+    FNa5.0  --> FNb7.1
+    FNa5.1  --> FNb7.0
+    FNa5.1  --> FNb7.1
+    FNa5.2  --> FNb7.0
+    FNa5.2  --> FNb7.1
+    FNa6.0  --> FNb3.0
+    FNa7.0  --> FNb8.0
+    FNa8.0  <-- FNb1.0
+    FNa8.0  <-- FNb1.1
+    FNa8.0  <-- FNb1.2
+    FNa8.0  <-- FNb1.3
+    FNa8.0  <-- FNb1.4
+    FNa8.0  <-- FNb1.5
+    FNa8.0  <-- FNb1.6
+    FNa8.0  <-- FNb1.7
+    FNa8.0  <-- FNb1.8
+    FNa8.0  <-- FNb1.9
+    FNa8.0  <-- FNb1.10
+
+@enduml
