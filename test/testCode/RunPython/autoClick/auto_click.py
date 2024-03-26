@@ -5,6 +5,7 @@ import pyautogui
 import time
 import pytesseract
 
+#自動點擊公式
 
 # 设置 Tesseract 的路径
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'  # 根据你的 Tesseract 安装路径进行修改
